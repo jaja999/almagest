@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Omaewa</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -12,7 +12,7 @@
 
     <script type="text/javascript" src="js/psd3.min.js"></script>
     <!--<link rel="stylesheet" type="text/css" href="css/psd3.css" />-->
-    <link rel="stylesheet" type="text/css" href="css/psd3.css" />
+    <link rel="stylesheet" type="text/css" href="css/sequences.css" />
 </head>
 
 <body style="margin: 15px;">
@@ -121,8 +121,8 @@
             }];
         var config = {
             containerId: "chartContainer",
-            width: 500,
-            height: 500,
+            width: 200,
+            height: 200,
             data: sampleData,
             heading: {
                 text: "Attendance",
@@ -136,8 +136,8 @@
             tooltip: function(d) {
                 return "<p>" + d.place + ": " + d.attendance +".</p>";
             },
-            transition: "bounce",
-            transitionDuration: 100,
+            transition: "elastic",
+            transitionDuration: 200,
             donutRadius: 50
         };
         var samplePie = new psd3.Pie(config);
