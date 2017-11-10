@@ -12,7 +12,7 @@
 
     <script type="text/javascript" src="js/psd3.min.js"></script>
     <!--<link rel="stylesheet" type="text/css" href="css/psd3.css" />-->
-    <link rel="stylesheet" type="text/css" href="css/sequences.css" />
+    <link rel="stylesheet" type="text/css" href="css/sequences_alt.css" />
 </head>
 
 <body style="margin: 15px;">
@@ -121,12 +121,15 @@
             }];
         var config = {
             containerId: "chartContainer",
-            width: 200,
-            height: 200,
+            width: 700,
+            height: 700,
             data: sampleData,
             heading: {
                 text: "Attendance",
                 pos: "top"
+            },
+            label: function(d) {
+                return d.data.place + ":" + d.data.attendance;
             },
             value: "attendance",
             inner: "drilldown",
