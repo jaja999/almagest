@@ -1,31 +1,136 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Naruhoto</title>
-    <script src="js/d3.min.js"></script>
-    <link rel="stylesheet" type="text/css"
-      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
-    <link rel="stylesheet" type="text/css" href="css/sequences.css"/>
-  </head>
-  <body>
-    <div id="main">
-      <div id="sequence"></div>
-      <div id="chart">
-        <div id="explanation" style="visibility: hidden;">
-          <span id="percentage"></span><br/>
-          of visits begin with this sequence of pages
+
+<head>
+    <meta charset="UTF-8">
+    <title>Omaewa</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+    <script type="text/javascript" src="js/psd3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/psd3.css" />
+</head>
+
+<body style="margin: 15px;">
+
+    <div class="container">
+        <div class="well">
+
         </div>
-      </div>
+
+        <div id="chartContainer" class="well"></div>
     </div>
-    <div id="sidebar">
-      <input type="checkbox" id="togglelegend"> Legend<br/>
-      <div id="legend" style="visibility: hidden;"></div>
-    </div>
-    <script type="text/javascript" src="js/sequences.js"></script>
+
     <script type="text/javascript">
-      // Hack to make this example display correctly in an iframe on bl.ocks.org
-      d3.select(self.frameElement).style("height", "700px");
-  </script>
-  </body>
+        var sampleData = [{
+            noOfColleges: 25,
+            place: "Maharashtra",
+            drilldown: [{
+                noOfColleges: 15,
+                place: "Pune",
+                drilldown: [{
+                    noOfColleges: 10,
+                    place: "Yerawada"
+                }, {
+                    noOfColleges: 5,
+                    place: "Kothrud"
+                }]
+            }, {
+                noOfColleges: 10,
+                place: "Mumbai",
+                drilldown: [{
+                    noOfColleges: 8,
+                    place: "Bandra",
+                    drilldown: [{
+                        noOfColleges: 3,
+                        place: "Turner Road"
+                    }, {
+                        noOfColleges: 5,
+                        place: "Perry Road"
+                    }]
+                }, {
+                    noOfColleges: 2,
+                    place: "Varali"
+                }]
+            }]
+        }, {
+            noOfColleges: 50,
+            place: "Gujarat",
+            drilldown: [{
+                noOfColleges: 20,
+                place: "Surat"
+            }, {
+                noOfColleges: 30,
+                place: "Rajkot",
+                drilldown: [{
+                    noOfColleges: 12,
+                    place: "Patan",
+                }, {
+                    noOfColleges: 18,
+                    place: "Modhera",
+                }]
+            }, {
+                noOfColleges: 4,
+                place: "Godhra"
+            }]
+        }, {
+            noOfColleges: 20,
+            place: "MP",
+            drilldown: [{
+                noOfColleges: 4,
+                place: "Indore",
+                drilldown: [{
+                    place: "Devas",
+                    noOfColleges: 2,
+                }, {
+                    place: "Dhar",
+                    noOfColleges: 2,
+                }]
+            }, {
+                noOfColleges: 5,
+                place: "Bhopal"
+            }, {
+                noOfColleges: 8,
+                place: "Ujjain",
+                drilldown: [{
+                    place: "Shajapur",
+                    noOfColleges: 2,
+                }, {
+                    place: "Ratlam",
+                    noOfColleges: 6,
+                }]
+            }, {
+                noOfColleges: 3,
+                place: "Sachi"
+            }]
+        }];
+        var config = {
+            containerId: "chartContainer",
+            width: 500,
+            height: 500,
+            data: sampleData,
+            heading: {
+                text: "Medical Colleges in India",
+                pos: "top"
+            },
+            label: function(d) {
+                return d.data.place + ":" + d.data.noOfColleges;
+            },
+            value: "noOfColleges",
+            inner: "drilldown",
+            tooltip: function(d) {
+                return "<p>There are " + d.noOfColleges + " medical colleges in " + d.place + ".</p>";
+            },
+            transition: "bounce",
+            transitionDuration: 1000,
+            donutRadius: 50
+        };
+        var samplePie = new psd3.Pie(config);
+    </script>
+
+</body>
+
 </html>
