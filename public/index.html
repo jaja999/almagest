@@ -11,6 +11,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 
     <script type="text/javascript" src="js/psd3.min.js"></script>
+    <script type="text/javascript" src="js/radial.js"></script>
+    <!--<script type="text/javascript" src="js/require.js"></script>-->
     <!--<link rel="stylesheet" type="text/css" href="css/psd3.css" />-->
     <link rel="stylesheet" type="text/css" href="css/sequences_alt.css" />
 </head>
@@ -21,37 +23,7 @@
     </div>
 
     <script type="text/javascript">
-            var loc = window.location.pathname;
-            var dir = loc.substring(0, loc.lastIndexOf('/'));
-            console.log("loc: ", loc);
-            console.log("dir: ", dir);
-            var data = [];
-            $.getJSON(dir + '/data/radialData.json', function(data) {
-              alert(data);
-            });
-            var sampleData = data;
-            var config = {
-            containerId: "chartContainer",
-            width: 300,
-            height: 300,
-            data: sampleData,
-            heading: {
-                text: "Attendance",
-                pos: "top"
-            },
-            label: function(d) {
-                return d.data.place + ":" + d.data.attendance;
-            },
-            value: "attendance",
-            inner: "drilldown",
-            tooltip: function(d) {
-                return "<p>" + d.place + ": " + d.attendance +".</p>";
-            },
-            transition: "elastic",
-            transitionDuration: 200,
-            donutRadius: 50
-        };
-        var samplePie = new psd3.Pie(config);
+      drawRadial();
     </script>
 
 </body>
